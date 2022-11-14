@@ -33,7 +33,7 @@ public with sharing class PersonTriggerHandler {
                         person.addError('The '+passport.Name+' is linked with another Person!');
                     }
                 }
-                if(Trigger.oldMap != null){
+                if(Trigger.oldMap != null) {
                     Person__c oldPerson = (Person__c)Trigger.oldMap.get(person.Id);
                     if(oldPerson.Passport__c != null) {
                         if(person.Passport__c != oldPerson.Passport__c ) {

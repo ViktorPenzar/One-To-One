@@ -57,7 +57,7 @@ public with sharing class PersonTriggerHandlerTest {
         personViktor.Passport__c = passportViktor.Id;
         update personViktor;
         personAndrey.Passport__c = passportViktor.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(personAndrey, false);
         Test.stopTest();
@@ -78,7 +78,7 @@ public with sharing class PersonTriggerHandlerTest {
         passportViktor.Person__c = personViktor.Id;
         update passportViktor;
         personViktor.Passport__c = passportAndrey.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(personViktor, false);
         Test.stopTest();
@@ -97,7 +97,7 @@ public with sharing class PersonTriggerHandlerTest {
         Person__c personAndrey = new Person__c(Name='Andrey');
         insert personAndrey;
         personAndrey.Passport__c = passportViktor.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(personAndrey, false);
         Test.stopTest();
@@ -116,7 +116,7 @@ public with sharing class PersonTriggerHandlerTest {
         Person__c personViktor = new Person__c(Name='Viktor', Passport__c=passportViktor.Id);
         insert personViktor;
         personViktor.Passport__c = passportAndrey.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(personViktor, false);
         Test.stopTest();

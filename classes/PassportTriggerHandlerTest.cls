@@ -57,13 +57,13 @@ public with sharing class PassportTriggerHandlerTest {
         passportViktor.Person__c = personViktor.Id;
         update passportViktor;
         passportAndrey.Person__c = personViktor.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(passportAndrey, false);
         Test.stopTest();
 
         System.assert(!result.isSuccess());
-        //System.assert(result.getErrors().size() > 0);
+        System.assert(result.getErrors().size() > 0);
         System.assertEquals('The Viktor is linked to another Passport!', result.getErrors()[0].getMessage());
     }
 
@@ -77,9 +77,8 @@ public with sharing class PassportTriggerHandlerTest {
         insert personAndrey;
         personViktor.Passport__c = passportViktor.Id;
         update personViktor;
-        
         passportViktor.Person__c = personAndrey.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(passportViktor, false);
         Test.stopTest();
@@ -100,13 +99,13 @@ public with sharing class PassportTriggerHandlerTest {
         personViktor.Passport__c = passportViktor.Id;
         update personViktor;
         passportAndrey.Person__c = personViktor.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(passportAndrey, false);
         Test.stopTest();
 
         System.assert(!result.isSuccess());
-        //System.assert(result.getErrors().size() > 0);
+        System.assert(result.getErrors().size() > 0);
         System.assertEquals('Another Passport is linked to Viktor!', result.getErrors()[0].getMessage());
     }
 
@@ -121,7 +120,7 @@ public with sharing class PassportTriggerHandlerTest {
         Person__c personAndrey = new Person__c(Name='Andrey');
         insert personAndrey;
         passport.Person__c = personAndrey.Id;
-        
+
         Test.startTest();
         Database.SaveResult result = Database.update(passport, false);
         Test.stopTest();
