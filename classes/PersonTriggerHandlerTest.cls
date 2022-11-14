@@ -50,12 +50,10 @@ public with sharing class PersonTriggerHandlerTest {
     private static void beforeUpdate_UpdatePersonWithPassportLinkedToOtherPerson_personWasNotUpdated() {
         Passport__c passportViktor = new Passport__c(Name='Passport Viktor');
         insert passportViktor;
-        Person__c personViktor = new Person__c(Name='Viktor');
+        Person__c personViktor = new Person__c(Name='Viktor', Passport__c=passportViktor.Id);
         insert personViktor; 
         Person__c personAndrey = new Person__c(Name='Andrey');
         insert personAndrey; 
-        personViktor.Passport__c = passportViktor.Id;
-        update personViktor;
         personAndrey.Passport__c = passportViktor.Id;
 
         Test.startTest();
@@ -71,12 +69,10 @@ public with sharing class PersonTriggerHandlerTest {
     private static void beforeUpdate_UpdatePersonLinkedtoPassport_personWasNotUpdated() {
         Person__c personViktor = new Person__c(Name='Viktor');
         insert personViktor;
-        Passport__c passportViktor = new Passport__c(Name='Passport Viktor');
+        Passport__c passportViktor = new Passport__c(Name='Passport Viktor', Person__c = personViktor.Id);
         insert passportViktor;
         Passport__c passportAndrey = new Passport__c(Name='Passport Andrey');
         insert passportAndrey;
-        passportViktor.Person__c = personViktor.Id;
-        update passportViktor;
         personViktor.Passport__c = passportAndrey.Id;
 
         Test.startTest();
